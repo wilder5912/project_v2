@@ -27,6 +27,8 @@ public class UserController {
     @Autowired
     private UserService userService;
     protected ObjectMapper mapper;
+    private User user;
+
     @GetMapping("/userData/{name}/{password}")
     public ResponseEntity<List<TypeUser>> getAllArticles(@PathVariable String name) {
         String name1= name;
@@ -54,9 +56,26 @@ public class UserController {
             return false;
     }
 
+    @PostMapping(value = "/loginUser")
+    public User loginUser(@RequestBody String userData)throws JsonParseException, JsonMappingException, IOException {
+        this.mapper = new ObjectMapper();
+        user = this.mapper.readValue(userData, User.class);
+        user = userService.getUserData(user);
+        return user;
+    }
 
+    @PostMapping(value = "/isLoginUser")
+    public User isLoginUser(@RequestBody String userData)throws JsonParseException, JsonMappingException, IOException {
+        this.mapper = new ObjectMapper();
+        User userActuali = this.mapper.readValue(userData, User.class);
+        return userService.getUserActual(user,userActuali);
+    }
 
-
+    @GetMapping(value = "/logoutUser")
+    public Boolean logoutUser()throws JsonParseException, JsonMappingException, IOException {
+        user = null;
+        return false;
+    }
 
 }
 

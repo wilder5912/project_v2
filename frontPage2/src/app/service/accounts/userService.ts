@@ -8,12 +8,9 @@ import { DataService } from '../../service/dataService/data.service';
 export class UserService {
 
      constructor(private http: HttpClient, public dataService:DataService) { }
-
     public register(User: User): Observable<boolean>  {
       return this.http.post<boolean>(this.getUrl("/user/addUser"), JSON.stringify(User));
     }
-
-
 
   private getUrl(modelo: String) {
     return this.dataService.getApiUrl() + modelo;

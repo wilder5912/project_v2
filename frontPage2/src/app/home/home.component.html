@@ -1,3 +1,13 @@
 <p>
-  home works!
+  login works!
 </p>
+
+
+<form name="form" (ngSubmit)="logout()"  #f="ngForm"  novalidate>
+  <div class="form-group">
+    <button [disabled]="loading" class="btn btn-primary">Logout</button>
+  </div>
+  <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+
+</form>
+

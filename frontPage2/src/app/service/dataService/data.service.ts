@@ -1,16 +1,23 @@
 import { BehaviorSubject, Observable } from 'rxjs/Rx';
 import { Injectable,Component } from '@angular/core';
+import { User } from '../../model/usuario/User';
+import { LoginService } from '../../service/accounts/loginService';
 
 @Injectable()
 export class DataService {
  private _apiUrl ='http://localhost:8080';
-  public count = 0;
+  user: User = new User();
+ public count = 0;
   constructor() { }
 
 
   getApiUrl(): string {
     return this._apiUrl;
   }
+/*
+
+
+*/
 
   get() {
     return this.count;

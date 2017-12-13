@@ -1,24 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
-import {SharedService } from '../service/sesion/shared.service';
 import { DataService } from '../service/dataService/data.service';
+import { LoginService } from '../service/accounts/loginService';
+import { User } from '../model/usuario/User';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  providers: []
-})
+  providers: [LoginService]}
+  )
 export class HomeComponent implements OnInit {
-
-  constructor(private router: Router ,private sharedService:SharedService, public dataService:DataService) {
-
+  user: User = new User();
+  constructor(private router: Router , public dataService:DataService, public loginService:LoginService ) {
   }
-
   ngOnInit() {
-    this.dataService.increment();
-    console.log(this.dataService.get(),"xxxx");
+    this.loginService.getUserDataServer(this.user);
 
   }
-
+  logout() {
+    this.loginService.logout()
+      .subscribe(result => {
+       /* if(null !== result){
+          localStorage.setItem('currentUser', JSON.stringify({ emailUser: result.emailUser, token: "fake-jwt-token" }));
+          this.router.navigate(['/home']);
+        }else{
+        }*/
+      }, e => {
+        console.log("errrr")
+      });
+  }
 }

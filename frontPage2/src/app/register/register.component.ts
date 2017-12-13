@@ -4,15 +4,6 @@ import { User } from '../model/usuario/User';
 import { UserService } from '../service/accounts/userService';
 
 
-/*
-import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { User } from '../model/usuario/User';
-import {SharedService } from '../service/sesion/shared.service';
-import { AuthService } from '../service/auth-service/Auth-service';
-import { DataService } from '../service/dataService/data.service';
-* */
-
 
 @Component({
   selector: 'app-register',
