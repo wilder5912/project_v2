@@ -6,28 +6,22 @@ import { LoginService } from '../../service/accounts/loginService';
 @Injectable()
 export class DataService {
  private _apiUrl ='http://localhost:8080';
-  user: User = new User();
- public count = 0;
-  constructor() { }
 
+ constructor() {
+
+  }
+  AUTH_CONFIG: User = {
+      userID: 0,
+      firtNameUser: '',
+      lastNameUser:'',
+      emailUser: '',
+      password: '',
+      typeUser: ''
+  };
 
   getApiUrl(): string {
     return this._apiUrl;
   }
-/*
 
 
-*/
-
-  get() {
-    return this.count;
-  }
-
-  increment() {
-    this.count++;
-  }
-
-  decrement() {
-    this.count--;
-  }
 }

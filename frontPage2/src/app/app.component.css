@@ -1,0 +1,113 @@
+.navbar-side {
+   border:none;
+   background-color: #202020;
+
+}
+.navbar-side {
+  z-index: 1;
+  position: absolute;
+  width: 260px;
+}
+
+.page-wrapper-width{
+  background-color: #202020;
+  width: 100%;
+}
+
+.nav > li > a {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+}
+.maxNav > li {
+  width: 100%;
+}
+#wrapper {
+  width: 100%;
+  background:#202020;
+}
+
+#page-wrapper{
+  padding: 15px 15px;
+  min-height: 600px;
+  background:#F3F3F3;
+
+}
+
+
+#page-inner {
+  width:100%;
+  margin:10px 20px 10px 0px;
+  background-color:#fff!important;
+  padding:10px;
+  min-height:1200px;
+}
+
+
+.navbar-cls-top .navbar-brand {
+  color: #fff;
+  background: #C90000;
+  width: 260px;
+  text-align: center;
+  height: 60px;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.navbar-cls-top {
+  background:#4D4D4D;
+  border-bottom:none;
+
+}
+.navbar-cls-top .navbar-brand:hover {
+
+  background: #C90000;
+  color:#fff;
+
+}
+.navbar-default {
+  border:0px solid black;
+
+}
+.text-center {
+  text-align:center;
+}
+.user-image {
+  margin: 25px auto;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  max-height:170px;
+  max-width:170px;
+}
+.navbar-header {
+  background: #A70303;
+}
+.navbar-default .navbar-toggle {
+  border-color: #fff;
+}
+/*==============================================
+    MEDIA QUERIES
+    =============================================*/
+
+@media(min-width:768px) {
+  #page-wrapper{
+    margin: 0 0 0 260px;
+    padding: 15px 30px;
+    min-height: 1200px;
+    margin: 0 0 0 260px;
+  }
+  .page-wrapper-width{
+    width: 260px;
+    position: absolute;
+    border:none;
+    background-color: #202020;
+    z-index: 1;
+  }
+
+  .navbar {
+    border-radius: 0px;
+  }
+
+}
+

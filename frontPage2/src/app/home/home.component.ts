@@ -15,17 +15,17 @@ export class HomeComponent implements OnInit {
   constructor(private router: Router , public dataService:DataService, public loginService:LoginService ) {
   }
   ngOnInit() {
-    this.loginService.getUserDataServer(this.user);
-
   }
   logout() {
     this.loginService.logout()
       .subscribe(result => {
-       /* if(null !== result){
-          localStorage.setItem('currentUser', JSON.stringify({ emailUser: result.emailUser, token: "fake-jwt-token" }));
-          this.router.navigate(['/home']);
-        }else{
-        }*/
+        window.location.reload();
+
+        /* if(null !== result){
+           localStorage.setItem('currentUser', JSON.stringify({ emailUser: result.emailUser, token: "fake-jwt-token" }));
+           this.router.navigate(['/home']);
+         }else{
+         }*/
       }, e => {
         console.log("errrr")
       });

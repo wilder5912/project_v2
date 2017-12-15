@@ -27,21 +27,25 @@ export class LoginService {
     return this.dataService.getApiUrl() + modelo;
   }
 
-  getUserDataServer(user:User): void{
+/*  getUserDataServer(user:User){
     if (localStorage.getItem('currentUser')) {
-    let users: any[] = JSON.parse(localStorage.getItem('currentUser')) || [];
-    user.emailUser=users['emailUser'];
-    this.isLogin(user)
-      .subscribe(result => {
-        if (null !== result) {
-          localStorage.setItem('currentUser', JSON.stringify({emailUser: result.emailUser, token: "fake-jwt-token"}));
-
-        }
-      }, e => {
-        console.log("errrr")
-      });
-  }
-}
+      let users: any[] = JSON.parse(localStorage.getItem('currentUser')) || [];
+      user.emailUser=users['emailUser'];
+    }
+      this.isLogin(user)
+        .subscribe(result => {
+          if (null !== result) {
+            this.dataService.AUTH_CONFIG=result;
+            localStorage.setItem('currentUser', JSON.stringify({emailUser: result.emailUser, token: "fake-jwt-token"}));
+            console.log(this.dataService.AUTH_CONFIG,"ggggggggg");
+            return this.dataService.AUTH_CONFIG;
+          }else{
+            return user;
+          }
+        }, e => {
+          console.log("errrr")
+        });
+}*/
 
 
 

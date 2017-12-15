@@ -6,6 +6,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome'
 
 import { AlertModule } from 'ngx-bootstrap';
 import { AuthGuard } from './service/sesion/index';
@@ -27,7 +28,7 @@ import { RegisterComponent } from './register/register.component';
     AppRoutingModule,
     AlertModule.forRoot(),
     HttpClientModule,
-
+    Angular2FontawesomeModule
   ],
   providers: [
     AuthGuard,
