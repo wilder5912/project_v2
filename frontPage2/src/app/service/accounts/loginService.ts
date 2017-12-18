@@ -3,18 +3,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { User } from "../../model/usuario/User";
 import { DataService } from '../../service/dataService/data.service';
-
+import { Router } from '@angular/router';
 @Injectable()
 export class LoginService {
 
-     constructor(private http: HttpClient, public dataService:DataService) { }
+     constructor(private http: HttpClient, public dataService: DataService , public router: Router) { }
 
     public login(User: User): Observable<User>  {
       return this.http.post<User>(this.getUrl("/user/loginUser"), JSON.stringify(User));
     }
 
   public isLogin(User: User): Observable<User>  {
-      // console.log(User);
     return this.http.post<User>(this.getUrl("/user/isLoginUser"), JSON.stringify(User));
   }
 
@@ -27,27 +26,9 @@ export class LoginService {
     return this.dataService.getApiUrl() + modelo;
   }
 
-/*  getUserDataServer(user:User){
-    if (localStorage.getItem('currentUser')) {
-      let users: any[] = JSON.parse(localStorage.getItem('currentUser')) || [];
-      user.emailUser=users['emailUser'];
-    }
-      this.isLogin(user)
-        .subscribe(result => {
-          if (null !== result) {
-            this.dataService.AUTH_CONFIG=result;
-            localStorage.setItem('currentUser', JSON.stringify({emailUser: result.emailUser, token: "fake-jwt-token"}));
-            console.log(this.dataService.AUTH_CONFIG,"ggggggggg");
-            return this.dataService.AUTH_CONFIG;
-          }else{
-            return user;
-          }
-        }, e => {
-          console.log("errrr")
-        });
-}*/
-
-
+  redirectUser(userA: User, urlPageN: string ) {
+    this.router.navigate([urlPageN]);
+  }
 
 }
 

@@ -5,7 +5,9 @@ import { LoginService } from '../../service/accounts/loginService';
 
 @Injectable()
 export class DataService {
- private _apiUrl ='http://localhost:8080';
+ private _apiUrl = 'http://localhost:8080';
+ public urlPage = '/' ;
+
 
  constructor() {
 

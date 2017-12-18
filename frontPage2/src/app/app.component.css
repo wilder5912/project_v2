@@ -72,6 +72,12 @@
 .text-center {
   text-align:center;
 }
+
+.text-color-user{
+  color:white;
+}
+
+
 .user-image {
   margin: 25px auto;
   -webkit-border-radius: 10px;
@@ -86,6 +92,13 @@
 .navbar-default .navbar-toggle {
   border-color: #fff;
 }
+.bootunStyle{
+  color: white;
+  padding: 15px 50px 5px 50px;
+  float: right;
+  font-size: 16px;
+}
+
 /*==============================================
     MEDIA QUERIES
     =============================================*/
@@ -110,4 +123,48 @@
   }
 
 }
+
+
+/*
+.sidebar-collapse .nav {
+  padding:0;
+}*/
+.sidebar-collapse .nav > li > a {
+  color:#fff;
+  background:#202020;
+  text-shadow:none;
+
+}
+
+.sidebar-collapse .nav > li > a:hover,
+.sidebar-collapse .nav > li > a:focus {
+  background:#ffffff;
+  color: #202020;
+  outline:0;
+
+}
+.active-menu {
+  background-color:#C90000!important;
+}
+
+/*.sidebar-collapse > .nav > li > a {
+  padding:15px 10px;
+}
+.sidebar-collapse > .nav > li {
+  border-bottom: 1px solid rgba(107, 108, 109, 0.19);
+}
+.sidebar-collapse .nav > li > a:hover,
+.sidebar-collapse .nav > li > a:focus {
+
+  background:#0A0A0A;
+  outline:0;
+}*/
+
+
+.elementoBlock {
+  display: none;
+}
+
+
+
 

@@ -1,7 +1,6 @@
 <div *ngIf="user.typeUser != 'Admin'">
   <nav class="navbar navbar-default">
     <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
           <span class="sr-only">Toggle navigation</span>
@@ -44,8 +43,8 @@
             </ul>
           </li>
         </ul>
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+      </div>
+    </div>
   </nav>
 
 <div *ngIf="stateUser">
@@ -70,13 +69,11 @@
 
         <div class=""  >
           <div class="nav navbar-nav navbar-right">
-            <div style="color: white;
-padding: 15px 50px 5px 50px;
-float: right;
-font-size: 16px;">
+            <div class="bootunStyle">
 
               <form name="form" (ngSubmit)="logout()"  #f="ngForm"  novalidate>
                 <div class="form-group">
+
                   <button [disabled]="loading" class="btn btn-danger square-btn-adjust">Logout</button>
                 </div>
                 <div *ngIf="error" class="alert alert-danger">{{error}}</div>
@@ -92,9 +89,42 @@ font-size: 16px;">
           <li class="text-center">
             <img src="http://es.web.img3.acsta.net/c_300_300/pictures/16/11/24/10/05/491594.jpg" class="user-image img-responsive"/>
           </li>
-          <li>
-            <a class="active-menu"  routerLink="/home" ><i class="fa fa-dashboard fa-3x"></i> Home</a>
+          <li class="text-center  page-heade ">
+            <h1> <small class="text-color-user">User: {{this.dataService.AUTH_CONFIG.firtNameUser}} {{this.dataService.AUTH_CONFIG.lastNameUser }}</small></h1>
           </li>
+
+          <li>
+            <a   routerLink="/homeAdmin"  ><i class="fa fa-dashboard fa-3x"></i> Home</a>
+          </li>
+
+          <li class="{{idAN}}" >
+            <a (click)="selectTodo()"><i class="fa fa-desktop fa-3x"></i> Producto<span class="fa arrow"></span></a>
+            <ul class="nav nav-second-level collapse {{idBN}}"   >
+              <li>
+                <a routerLink="/produtoCreate" >Crear Producto</a>
+              </li>
+              <li class="{{idAN2}}" >
+                <a (click)="selectTodo2()"><span class="fa arrow"></span>sssss</a>
+                <ul class="nav nav-second-level collapse {{idBN2}}"   >
+                  <li>
+                    <a >nivel 1</a>
+                  </li>
+                  <li>
+                    <a >Third Level Link</a>
+                  </li>
+                  <li>
+                    <a >Third Level Link</a>
+                  </li>
+
+                </ul>
+              </li>
+            </ul>
+          </li>
+
+          <li  >
+            <a  [ngClass]="{'active-menu': this.dataService.urlPage =='/produ' }" ><i class="fa fa-edit fa-3x"></i> Forms </a>
+          </li>
+
         </ul>
       </div>
     </nav>
@@ -102,10 +132,10 @@ font-size: 16px;">
       <div id="page-inner">
         <div *ngIf="stateUser">
           <router-outlet></router-outlet>
+          {{this.dataService.urlPage}}
         </div>
       </div>
     </div>
   </div>
 </div>
-
 
