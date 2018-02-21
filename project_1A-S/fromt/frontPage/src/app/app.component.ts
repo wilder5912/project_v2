@@ -3,13 +3,15 @@ import { Validators, FormControl, FormGroup } from '@angular/forms';
 import { DataService } from './service/dataService/data.service';
 import { User } from './model/usuario/User';
 import { LoginService } from './service/accounts/loginService';
+import { UserService } from './service/accounts/userService';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [ LoginService ]
+  providers: [ LoginService ,UserService]
+
 })
 export class AppComponent implements OnInit{
   title = 'app';
@@ -17,18 +19,52 @@ export class AppComponent implements OnInit{
   idBN = '';
   idAN2 = '';
   idBN2= '';
+  selectedFiles: FileList;
+  currentFileUpload: File
+  progress: { percentage: number } = { percentage: 0 }
+  imageUser = '';
+  imageload = '';
+
 
   user: User = new User();
   stateUser: boolean = null;
   stateCss: boolean = true;
   stateCss2: boolean = true;
-  constructor( public dataService: DataService , public loginService: LoginService, public router: Router) {
+  constructor( public dataService: DataService , public loginService: LoginService, public userService: UserService,public router: Router) {
 
   }
   ngOnInit() {
 
+    this.dataService.imageLoadPage = true;
+
+    this.imageload= this.dataService.getApiUrl()+"/user/files/loadpage.gif";
     this.getUserDataServer();
   }
+  selectFile(event) {
+
+    const file = event.target.files.item(0);
+    if (file.type.match('image.*')) {
+
+      this.selectedFiles = event.target.files;
+    } else {
+      console.log("formato invalido");
+    }
+  }
+
+  upload() {
+    this.progress.percentage = 0;
+
+    this.currentFileUpload = this.selectedFiles.item(0)
+    this.userService.editImage(this.currentFileUpload).subscribe(event => {
+      this.getUserDataServer();
+    }, e => {
+      console.log( "errrr",e );
+    });
+
+    this.selectedFiles = undefined
+  }
+
+
   selectTodo() {
     if(this.stateCss){
       this.stateCss = false;
@@ -57,25 +93,44 @@ export class AppComponent implements OnInit{
       const usersData: any[] = JSON.parse(localStorage.getItem('currentUser')) || [];
       this.user.emailUser = usersData['emailUser'];
     }
-
+    if (!sessionStorage.getItem('token')) {
+      sessionStorage.setItem("token","null");
+      this.user.tokenUser = 'null';
+    }
+    this.user.tokenUser = sessionStorage.getItem('token');
+    this.dataService.urlPage = this.router.url;
     this.loginService.isLogin(this.user)
       .subscribe(result => {
-        this.stateUser = true;
+         this.stateUser = true;
+         this.dataService.stateUserPage = true;
+
         this.dataService.urlPage = this.router.url;
         if (null !== result) {
           this.dataService.AUTH_CONFIG = result;
+          this.imageUser= this.dataService.getApiUrl()+"/user/files/"+this.dataService.AUTH_CONFIG.imagenUser;
+          this.dataService.imageUserPage= this.dataService.getApiUrl()+"/user/files/"+this.dataService.AUTH_CONFIG.imagenUser;
+
+
           localStorage.setItem('currentUser', JSON.stringify({emailUser: result.emailUser, token: "fake-jwt-token"}));
           this.user = result;
           if (localStorage.getItem('currentUser')) {
-            this.loginService.redirectUser(result, this.router.url);
+            if('/loginRegister'=== this.router.url){
+                this.loginService.redirectUser(result, '/homeAdmin');
+            }else{
+                this.loginService.redirectUser(result, this.dataService.urlPage);
+
+            }
           }
+          this.dataService.islogin=true;
         }else {
-          this.loginService.redirectUser(this.user, '/home');
+          //this.loginService.redirectUser(result, this.dataService.urlPage);
+          this.dataService.islogin=false;
+           this.loginService.redirectUser(this.user, '/home');
+
         }
-
-
+        this.dataService.imageLoadPage = false;
       }, e => {
-        console.log( "errrr" );
+        console.log( "errrr",e );
       });
   }
   logout() {

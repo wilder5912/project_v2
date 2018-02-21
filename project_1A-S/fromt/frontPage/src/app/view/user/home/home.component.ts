@@ -15,7 +15,6 @@ export class HomeComponent implements OnInit {
   constructor(private router: Router , public dataService: DataService, public loginService: LoginService ) {
   }
   ngOnInit() {
-
   }
   public logout() {
     this.loginService.logout()

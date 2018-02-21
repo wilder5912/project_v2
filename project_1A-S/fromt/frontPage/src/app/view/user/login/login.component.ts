@@ -4,6 +4,9 @@ import { User } from '../../../model/usuario/User';
 import { LoginService } from '../../../service/accounts/loginService';
 import { DataService } from '../../../service/dataService/data.service';
 import { Router, CanActivate } from '@angular/router';
+import { AuthHttp, AuthConfig ,JwtHelper} from 'angular2-jwt';
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,40 +16,31 @@ import { Router, CanActivate } from '@angular/router';
 
 export class LoginComponent implements OnInit {
 
-  private model: User = new User();
-  private form: FormGroup;
-  private loading = false;
-  constructor(public loginService: LoginService , public router: Router, public dataService: DataService) {
+  public model: User = new User();
+  public form: FormGroup;
+  public  loading = false;
+  public jwtHelper: JwtHelper = new JwtHelper();
+
+  constructor(public loginService: LoginService , public router: Router, public dataService: DataService ) {
   }
   ngOnInit() {
     this.iniPage();
   }
 
   public iniPage(){
-    if (localStorage.getItem('currentUser')) {
-      const users: any[] = JSON.parse(localStorage.getItem('currentUser')) || [];
-      this.model.emailUser = users['emailUser'];
-      this.loginService.isLogin(this.model)
-        .subscribe(result => {
-          if (null !== result) {
-            localStorage.setItem('currentUser', JSON.stringify({emailUser: result.emailUser, token: 'fake-jwt-token'}));
-            if(result.typeUser === 'Admin') {
-              this.loginService.redirectUser(result,'/homeAdmin');
-            }else{
-              this.loginService.redirectUser(result,'/home');
-            }
-          }
-        }, e => {
-          console.log('errrr');
-        });
-    }
   }
 
   public login() {
+    this.dataService.imageLoadPage = true;
       this.loginService.login(this.model)
       .subscribe(result => {
+        //console.log(result,"esta lo");
         if (null !== result) {
+          sessionStorage.setItem('token',result.tokenUser);
           localStorage.setItem('currentUser', JSON.stringify({ emailUser: result.emailUser, token: 'fake-jwt-token' }));
+        }else{
+          sessionStorage.setItem('token',null);
+
         }
         window.location.reload();
 

@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient,HttpHeaders , HttpHandler, HttpRequest ,HttpEvent,HttpInterceptor ,  HTTP_INTERCEPTORS } from "@angular/common/http";
 import { User } from "../../model/usuario/User";
 import { GroupProduct } from "../../model/product/GroupProduct";
 import { DataService } from '../dataService/data.service';
@@ -24,6 +24,11 @@ export class GroupProductService {
   public deleteProductGroup(GroupProduct: GroupProduct): Observable<boolean>  {
     return this.http.post<boolean>(this.dataService.getUrl("/groupProduct/deleteGroupProduct"), JSON.stringify(GroupProduct));
   }
+  public getProductGroupBussineId(bussineId:number): Observable<object>  {
+    return this.http.get<object>(this.dataService.getUrl("/groupProduct/getBussineGroupList/"+bussineId));
+  }
+
+
 }
 
 

@@ -14,7 +14,7 @@
   <ng-template #template>
     <div class="modal-header">
       <h4 class="modal-title pull-left">Grupo</h4>
-      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRefProductGroup.hide()">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
@@ -71,7 +71,7 @@
                 <button [disabled]="loading" type="button" (click)="editGroupInfo()"  class="btn btn-primary">{{'Edit_Group'| translate }}</button>
               </ng-template>
             </div>
-            <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+
           </form>
         </div>
       </div>
@@ -97,7 +97,7 @@
     <div class="col-xs-6">
       <div class="row">
         <select class="form-control input-sm" [(ngModel)]="sortBy">
-          <option ngValue="groupId">Id</option>
+          <option ngValue="groupId">N</option>
           <option ngValue="nombreBu">Bussine</option>
           <option ngValue="nameGroup">Grupo</option>
         </select>
@@ -127,7 +127,7 @@
             <mfDefaultSorter by="groupId">Id</mfDefaultSorter>
           </th>
           <th style="width: 10%">
-            <mfDefaultSorter by="bussineId.nombreBu">Bussine</mfDefaultSorter>
+            <mfDefaultSorter by="bussineId.nameBu">Bussine</mfDefaultSorter>
           </th>
           <th style="width: 20%">
             <mfDefaultSorter by="nameGroup">Grupo</mfDefaultSorter>
@@ -147,7 +147,7 @@
         <tr *ngFor="let item of mf.data">
 
           <td>{{item.groupId}}</td>
-          <td>{{item.bussineId.nombreBu}}</td>
+          <td>{{item.bussineId.nameBu}}</td>
           <td>{{item.nameGroup}}</td>
           <td>
             <button (click)="remove(item)" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>

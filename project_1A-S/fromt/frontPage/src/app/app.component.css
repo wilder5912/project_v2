@@ -101,6 +101,12 @@
   font-size: 16px;
 }
 
+.style-file{
+  width: 100%;
+  color: #fff0;
+  display: none;
+}
+
 /*==============================================
     MEDIA QUERIES
     =============================================*/
@@ -151,3 +157,34 @@
 }
 
 
+.load-page{
+  height: 100%;
+  z-index: 10401;
+  text-align: center;
+  visibility: visible;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+  display: block;
+  margin: auto;
+  padding: 100px;
+}
+
+.load-image{
+  background-color: #fefefe00;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #8880;
+  width: 80%;
+}
+.display-block-image-load{
+  display: block;
+}
+
+.display-none-image-load{
+  display: none;
+}

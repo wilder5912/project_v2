@@ -5,4 +5,8 @@ export class User{
   emailUser: string;
   password: string;
   typeUser: string;
+  imagenUser: string;
+  tokenUser: string;
+  codeUser: string;
+
 }

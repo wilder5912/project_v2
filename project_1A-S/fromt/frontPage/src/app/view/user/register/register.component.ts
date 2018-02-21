@@ -12,10 +12,9 @@ import { LoginService } from '../../../service/accounts/loginService';
   providers: [UserService,LoginService]
 })
 export class RegisterComponent implements OnInit {
-  private model: User = new User();
-  private user: User = new User();
-
-  private form: FormGroup;
+  public model: User = new User();
+  public user: User = new User();
+  public form: FormGroup;
   constructor(public userService:UserService ,public dataService:DataService, public loginService:LoginService) { }
 
   ngOnInit() {

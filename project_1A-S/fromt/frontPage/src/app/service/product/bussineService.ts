@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient,HttpHeaders , HttpHandler, HttpRequest ,HttpEvent,HttpInterceptor ,  HTTP_INTERCEPTORS } from "@angular/common/http";
 import { User } from "../../model/usuario/User";
 import { Bussine } from "../../model/bussine/Bussine";
 
@@ -14,6 +14,10 @@ export class BussineService {
     public getBussine(): Observable<Bussine>  {
       return this.http.get<Bussine>(this.dataService.getUrl("/bussine/getBussineDTO"));
      }
+     public getBussineAll(bussine: Bussine): Observable<Object>  {
+      return this.http.post<Object>(this.dataService.getUrl("/bussine/getBussineListAllDTO"),JSON.stringify(bussine));
+     }
+
 }
 
 
